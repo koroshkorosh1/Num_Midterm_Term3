@@ -48,3 +48,16 @@ else
     disp('la matriz no es cuadrada')
 end
 %[1 1 2;2 3 1;3 -1 -1]
+
+
+
+
+
+
+%---------------------------------------------
+%The default function of MATLAB software
+M = [1  1  2;2 3 1;3 -1 -1]
+M = sym(M);
+[L, U] = lu(M)
+%The default function of MATLAB software
+%---------------------------------------------
