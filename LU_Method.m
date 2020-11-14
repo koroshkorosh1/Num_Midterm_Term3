@@ -1,63 +1,139 @@
-%#####L_U
-%AX=B     %FIND FOR . . .
-%A=L*U    %FIND U AND U  
-%(L*U)X=B
-%LY=B     %FIND Y
-%UX=Y     %FIND X
-%X !!!
 
-clc
-clear all
-fprintf('Factorizacion LU');
-%
-%Dimensiones de la matriz aleatoria
-m=input(' Number of columns :            ');
-n=input(' Number of rows    :             ');
-B=input(' Enter the matrix  :        ');
-%
-[n,m]=size(B);
-% Matrices iniciales propuestas L y U
-L=zeros(length(B)); %Matriz L de elementos zero
-U=zeros(length(B)); %Matriz U de elementos zero
-if n==m 
-    for j=1:length(B)
-        for i=1:length(B)
-            sum=0;
-            q=j-1;
-            for k=1:q
-                sum=sum+(L(i,k)*U(k,j));
-            end
-            if i==j
-                U(i,j)=1;
-            end
-            if i >=j
-                L(i,j)=B(i,j)-sum; %Gen matriz triangular inf
-            else
-                U(i,j)=(1/L(i,i))*(B(i,j)-sum); %Gen matriz triangular sup
-            end
-        end
-    end
-else
-end
-if n==m
-    B;
-    L;
-    U;
-    LU=L*U;
-else
-    disp('la matriz no es cuadrada')
-end
 %[1 1 2;2 3 1;3 -1 -1]
-
-
-
-
-
-
 %---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+%##### L_U
+%AX=B      %FIND FOR . . .
+%A=L*U     %FIND U AND U  
+%(L*U)X=B
+%LY=B      %FIND Y
+%UX=Y      %FIND X
+%X !!!
 %The default function of MATLAB software
 M = [1  1  2;2 3 1;3 -1 -1]
 M = sym(M);
 [L, U] = lu(M)
 %The default function of MATLAB software
 %---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+%slove_Matric
+
+A = [ 2 1  1;
+     -1 1 -1;
+      1 2  3];
+      
+B = [2; 3; -10];
+X = linsolve(A,B)
+
+%---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+%LDU_Method
+
+A=[1 -3
+    2  -1]
+
+
+L=(tril(A)-diag(diag(A)))
+D=diag(diag(A))
+U=(triu(A)-diag(diag(A)))
+T=-inv(D)*(L+U)
+[V,E]=eig(T)
+norm(V)
+norm(E)
+
+%---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+%GS_Method
+
+A=[3 -2 1
+2 4 -2
+1 1 2]
+
+
+
+L=(tril(A)-diag(diag(A)))
+D=diag(diag(A))
+U=(triu(A)-diag(diag(A)))
+T=-inv(L+D)*U
+[V,D]=eig(T)
+norm(D)
+
+
+%---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+%Matrix_inverse
+A = [1  1 2;
+    2 3 1;
+    3 -1 -1]
+
+
+
+B = inv(A)
+I=A*B
+
+
+%---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+%Transpose_vector_or_matrix
+A=[1  1 2;
+    2 3 1;
+    3 -1 -1]
+
+
+
+B = transpose(A)
+
+
+%---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+%Error analysis
+true_error=1           %The difference between the two numbers
+true_value=2
+Epsilon=true_error/true_value
+Epsilon_100=E*100
+
+
+%---------------------------------------------
+%---------------------------------------------
+%---------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
